@@ -4,11 +4,13 @@ canvas {
 	margin: 50px auto 10px;
 	border:1px solid black;
 	cursor: url(../img/cursor.png), crosshair;
+	position: fixed;
 }
 
 .btns {
 	padding-top: 90px;
 	padding-left: 180px;
+	position: fixed;
 }
 
 h1 {
@@ -18,10 +20,12 @@ h1 {
 .pravo {
 	padding-top:200px;
 	padding-left:100px;
+	position: fixed;
 }
 
 button {
 	font-color:white;
+	position: fixed;
 }
 
 
