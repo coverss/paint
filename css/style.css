@@ -1,0 +1,27 @@
+
+canvas {
+	display: block;
+	margin: 50px auto 10px;
+	border:1px solid black;
+	cursor: url(../img/cursor.png), crosshair;
+}
+
+.btns {
+	padding-top: 90px;
+	padding-left: 180px;
+}
+
+h1 {
+	padding-right: 120px;
+}
+
+.pravo {
+	padding-top:200px;
+	padding-left:100px;
+}
+
+button {
+	font-color:white;
+}
+
+
