@@ -1,6 +1,6 @@
 var imageLoader = document.getElementById('imageLoader');
     imageLoader.addEventListener('change', handleImage, false);
-var color;
+var color = "black";
 var canvas = $("canvas");
 var context = canvas[0].getContext("2d");
 var lastEvent;
@@ -14,19 +14,19 @@ function handleImage(e){
         img.onload = function(){
             canvas.width = img.width;
             canvas.height = img.height;
-            context.drawImage(img,0,0);
+            context.drawImage(img,0,0,500,400);
         }
         img.src = event.target.result;
     }
     reader.readAsDataURL(e.target.files[0]);     
 }
 
-//On mouse events on the canvas
+
 canvas.mousedown(function(e){
   lastEvent = e;
    mouseDown = true;
 }).mousemove(function(e){
-  //Draw lines
+ 
   if(mouseDown) {
     context.beginPath();
     context.moveTo(lastEvent.offsetX, lastEvent.offsetY);
@@ -53,30 +53,13 @@ $('#clearCanvas').click(function(e){
     clearCanvas();
 });
 
-function grayscale (){
-    var currImgData = context.getImageData(0, 0, canvas.width, canvas.height);
-     
-        for (var i = 0; i < currImgData.data.length; i += 4) {
-          var r = currImgData.data[i];
-          var g = currImgData.data[i + 1];
-          var b = currImgData.data[i + 2];
-          var v = 0.2126*r + 0.7152*g + 0.0722*b;
-          currImgData.data[i] = v;
-          currImgData.data[i + 1] = v;
-          currImgData.data[i + 2] = v;
-        }
-        context.putImageData(currImgData, 0, 0);
-}
-
-
-
 function xx (){
         context.putImageData(or, 0, 0);
 }
 
 function grayscale (){
-    var currImgData = context.getImageData(0, 0, canvas.width, canvas.height);
-        
+    var currImgData = context.getImageData(0, 0, 500, 400);
+       
         for (var i = 0; i < currImgData.data.length; i += 4) {
           var r = currImgData.data[i];
           var g = currImgData.data[i + 1];
@@ -91,8 +74,8 @@ function grayscale (){
 
 
 function original(weights){
-  var currImgData = context.getImageData(0, 0, canvas.width, canvas.height);
-        
+  var currImgData = context.getImageData(0, 0, 500, 400);
+   
         for (var i = 0; i < currImgData.data.length; i += 4) {
           
           currImgData.data[i]     += weights[i % 8]; 
@@ -104,12 +87,12 @@ function original(weights){
         context.putImageData(currImgData, 0, 0);
 }
 function blur(weights){
-  var currImgData = context.getImageData(0, 0, canvas.width, canvas.height);
+  var currImgData = context.getImageData(0, 0, 500, 400);
        
         for (var i = 4; i < currImgData.data.length - 4; i += 4) {
 
-          currImgData.data[i]     = (currImgData.data[i-1] + currImgData.data[i] + currImgData.data[i+1])/3; 
-          currImgData.data[i + 1] = (currImgData.data[i] + currImgData.data[i+1] + currImgData.data[i+2])/3; 
+          currImgData.data[i]     = (currImgData.data[i-1] + currImgData.data[i] + currImgData.data[i+1])/3; // red
+          currImgData.data[i + 1] = (currImgData.data[i] + currImgData.data[i+1] + currImgData.data[i+2])/3; // green
           currImgData.data[i + 2] = (currImgData.data[i] + currImgData.data[i+2] + currImgData.data[i+3])/3;
         }
         
@@ -118,36 +101,37 @@ function blur(weights){
 
 
 function sepia(){
-  var currImgData = context.getImageData(0, 0, canvas.width, canvas.height);
-      
+  var currImgData = context.getImageData(0, 0, 500, 400);
+        
         for (var i = 0; i < currImgData.data.length; i += 4) {
           var r = currImgData.data[i];
           var g = currImgData.data[i + 1];
           var b = currImgData.data[i + 2];
-          currImgData.data[i]     = (r * 0.393)+(g * 0.769)+(b * 0.189); 
-          currImgData.data[i + 1] = (r * 0.349)+(g * 0.686)+(b * 0.168); 
-          currImgData.data[i + 2] = (r * 0.272)+(g * 0.534)+(b * 0.131); 
+          currImgData.data[i]     = (r * 0.393)+(g * 0.769)+(b * 0.189); // red
+          currImgData.data[i + 1] = (r * 0.349)+(g * 0.686)+(b * 0.168); // green
+          currImgData.data[i + 2] = (r * 0.272)+(g * 0.534)+(b * 0.131); // blue
 
         }
-        
+     
         context.putImageData(currImgData, 0, 0);
 }
 
 function brightness(){
-  var currImgData = context.getImageData(0, 0, canvas.width, canvas.height);
-    
+  var currImgData = context.getImageData(0, 0, 500, 400);
+        
         var bright_lvl = 50;
         for (var i = 0; i < currImgData.data.length; i += 4) {
           currImgData.data[i] += bright_lvl;
           currImgData.data[i + 1] += bright_lvl;
           currImgData.data[i + 2] += bright_lvl;
         }
-      
+        
+        
         context.putImageData(currImgData, 0, 0);
 }
 function treshold(){
-  var currImgData = context.getImageData(0, 0, canvas.width, canvas.height);
-   
+  var currImgData = context.getImageData(0, 0, 500, 400);
+        
         var bright_lvl = 50;
         for (var i = 0; i < currImgData.data.length; i += 4) {
           var r = currImgData.data[i];
@@ -158,11 +142,11 @@ function treshold(){
           currImgData.data[i + 1] = v; 
           currImgData.data[i + 2] = v; 
         }
- 
+        
         context.putImageData(currImgData, 0, 0);
 }
 function inverse(){
-  var currImgData = context.getImageData(0, 0, canvas.width, canvas.height);
+  var currImgData = context.getImageData(0, 0, 500, 400);
         
         for (var i = 0; i < currImgData.data.length; i += 4) {
           
@@ -206,7 +190,7 @@ $('#grayscale').click(function(){
          0, -20,  0 ]);
     });
   $('#sobel').click(function(){
-   
+    
     original(
       [-20, 50, 20,
        -40, 50, 40,
@@ -222,9 +206,7 @@ $('#grayscale').click(function(){
   $('#inverse').click(function(){
     inverse();
     });
-  
+
 });
-
-
 
 
