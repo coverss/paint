@@ -53,6 +53,7 @@ $('#clearCanvas').click(function(e){
     clearCanvas();
 });
 
+
 function grayscale (){
     var currImgData = context.getImageData(0, 0, 500, 400);
        
@@ -82,7 +83,7 @@ function original(weights){
        
         context.putImageData(currImgData, 0, 0);
 }
-function blur(weights){
+function violet(weights){
   var currImgData = context.getImageData(0, 0, 500, 400);
        
         for (var i = 4; i < currImgData.data.length - 4; i += 4) {
@@ -93,6 +94,26 @@ function blur(weights){
         }
         
         context.putImageData(currImgData, 0, 0);
+}
+
+function blur(weights){ 
+var currImgData = context.getImageData(0, 0, 500, 400); 
+
+for (var i = 0; i < currImgData.data.length-40; i += 4) { 
+var x = currImgData.data[i]; 
+var y = currImgData.data[i+1]; 
+var z = currImgData.data[i+2]; 
+
+for(var j = 0; j < 10; j++){ 
+x += currImgData.data[i+j*4]; 
+y += currImgData.data[i+1+j*4]; 
+z += currImgData.data[i+2+j*4]; 
+} 
+currImgData.data[i] = x/10; 
+currImgData.data[i + 1] = y/10; 
+currImgData.data[i + 2] = z/10; 
+} 
+context.putImageData(currImgData, 0, 0); 
 }
 
 
@@ -201,6 +222,9 @@ $('#grayscale').click(function(){
     });
   $('#inverse').click(function(){
     inverse();
+    });
+  $('#violet').click(function(){
+    violet();
     });
 
 });
