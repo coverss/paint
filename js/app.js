@@ -53,10 +53,6 @@ $('#clearCanvas').click(function(e){
     clearCanvas();
 });
 
-function xx (){
-        context.putImageData(or, 0, 0);
-}
-
 function grayscale (){
     var currImgData = context.getImageData(0, 0, 500, 400);
        
