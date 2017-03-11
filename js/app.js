@@ -174,6 +174,63 @@ function inverse(){
         context.putImageData(currImgData, 0, 0);
 }
 
+function fillred() {
+
+context.beginPath();
+context.rect(0, 0, 500, 400);
+context.fillStyle = "red";
+context.fill();
+
+}
+function fillblack() {
+
+context.beginPath();
+context.rect(0, 0, 500, 400);
+context.fillStyle = "black";
+context.fill();
+
+}
+function fillyellow() {
+
+context.beginPath();
+context.rect(0, 0, 500, 400);
+context.fillStyle = "yellow";
+context.fill();
+
+}
+function fillgreen() {
+
+context.beginPath();
+context.rect(0, 0, 500, 400);
+context.fillStyle = "green";
+context.fill();
+
+}
+function fillgrey() {
+
+context.beginPath();
+context.rect(0, 0, 500, 400);
+context.fillStyle = "grey";
+context.fill();
+
+}
+function fillblue() {
+
+context.beginPath();
+context.rect(0, 0, 500, 400);
+context.fillStyle = "blue";
+context.fill();
+
+}
+function fillbrown() {
+
+context.beginPath();
+context.rect(0, 0, 500, 400);
+context.fillStyle = "brown";
+context.fill();
+
+}
+
 
 $(document).ready(function(){
     $("#img-file").on('change', handleImage);
@@ -226,7 +283,29 @@ $('#grayscale').click(function(){
   $('#violet').click(function(){
     violet();
     });
+  $('#fillred').click(function(){
+    fillred();
+    });
+  $('#fillblack').click(function(){
+    fillblack();
+    });
+  $('#fillyellow').click(function(){
+    fillyellow();
+    });
+  $('#fillgreen').click(function(){
+    fillgreen();
+    });
+  $('#fillgrey').click(function(){
+    fillgrey();
+    });
+  $('#fillblue').click(function(){
+    fillblue();
+    });
+   $('#fillbrown').click(function(){
+    fillbrown();
+    });
 
 });
+
 
 
